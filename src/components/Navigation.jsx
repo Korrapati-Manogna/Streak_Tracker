@@ -6,6 +6,7 @@ export default function Navigation({
   user,
   onLogout,
   onOpenFastLog,
+  onOpenInstallModal,
   streakCount,
   isOverridden,
   effectiveToday
@@ -43,6 +44,15 @@ export default function Navigation({
               🛠️ {effectiveToday}
             </span>
           )}
+
+          <button
+            type="button"
+            className="btn-install-nav"
+            onClick={onOpenInstallModal}
+            title="Install Streak Tracker as desktop or mobile app"
+          >
+            📲 Install App
+          </button>
 
           <button
             type="button"

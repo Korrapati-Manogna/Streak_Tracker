@@ -20,6 +20,7 @@ import {
 import AuthView from './components/AuthView.jsx';
 import Navigation from './components/Navigation.jsx';
 import FastLogModal from './components/FastLogModal.jsx';
+import InstallGuideModal from './components/InstallGuideModal.jsx';
 import Toast from './components/Toast.jsx';
 
 import DashboardView from './views/DashboardView.jsx';
@@ -36,6 +37,7 @@ export default function App() {
   const [realToday] = useState(() => toDateString(new Date()));
   const [motivationOverride, setMotivationOverride] = useState({ stateKey: null, text: null });
   const [isFastLogOpen, setIsFastLogOpen] = useState(false);
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
   const [fastLogInitialTitle, setFastLogInitialTitle] = useState('');
   const [toast, setToast] = useState(null);
 
@@ -182,7 +184,14 @@ export default function App() {
   if (!currentUser) {
     return (
       <div className="app-container">
-        <AuthView onAuthSuccess={handleAuthSuccess} />
+        <AuthView
+          onAuthSuccess={handleAuthSuccess}
+          onOpenInstallModal={() => setIsInstallModalOpen(true)}
+        />
+        <InstallGuideModal
+          isOpen={isInstallModalOpen}
+          onClose={() => setIsInstallModalOpen(false)}
+        />
         <Toast toast={toast} onClose={() => setToast(null)} />
       </div>
     );
@@ -197,6 +206,7 @@ export default function App() {
         user={currentUser}
         onLogout={handleLogout}
         onOpenFastLog={() => handleOpenFastLog('')}
+        onOpenInstallModal={() => setIsInstallModalOpen(true)}
         streakCount={streakData.currentStreak}
         isOverridden={isOverridden}
         effectiveToday={effectiveToday}
@@ -266,6 +276,12 @@ export default function App() {
         defaultDate={effectiveToday}
         initialTitle={fastLogInitialTitle}
         entries={entries}
+      />
+
+      {/* Modal for installation guide & 1-click install */}
+      <InstallGuideModal
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
       />
 
       {/* Responsive Toast Notification */}

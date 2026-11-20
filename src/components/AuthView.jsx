@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login, signup } from '../storage.js';
 
-export default function AuthView({ onAuthSuccess }) {
+export default function AuthView({ onAuthSuccess, onOpenInstallModal }) {
   const [isSignUp, setIsSignUp] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -184,6 +184,18 @@ export default function AuthView({ onAuthSuccess }) {
             </p>
           )}
         </div>
+
+        {onOpenInstallModal && (
+          <div className="auth-install-app-row">
+            <button
+              type="button"
+              className="btn-install-auth-link"
+              onClick={onOpenInstallModal}
+            >
+              📲 Install App to Desktop / Mobile
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

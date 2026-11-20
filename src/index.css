@@ -3276,3 +3276,177 @@ button, input, select, textarea {
     justify-content: center;
   }
 }
+
+
+/* ==========================================================================
+   Navigation Install Button & Install Guide Modal
+   ========================================================================== */
+
+.btn-install-nav {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: var(--radius-md);
+  padding: 0.48rem 0.85rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-install-nav:hover {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: #60a5fa;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.auth-install-app-row {
+  margin-top: 1rem;
+  text-align: center;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 1rem;
+}
+
+.btn-install-auth-link {
+  background: transparent;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #60a5fa;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-install-auth-link:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+/* Install Guide Modal */
+.install-guide-modal {
+  max-width: 620px;
+}
+
+.install-guide-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.install-modal-installed-banner {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.install-modal-installed-banner h4 {
+  color: #34d399;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.install-modal-installed-banner p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.installed-icon {
+  font-size: 2rem;
+}
+
+.install-cta-box {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-main);
+}
+
+.btn-large-install {
+  padding: 0.8rem 1.75rem;
+  font-size: 1rem;
+}
+
+.device-tabs-row {
+  display: flex;
+  background: var(--bg-card-subtle);
+  padding: 0.35rem;
+  border-radius: var(--radius-md);
+  gap: 0.35rem;
+  border: 1px solid var(--border-color);
+}
+
+.device-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.device-tab-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.install-steps-container {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.guide-heading {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.guide-steps {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.guide-steps li strong {
+  color: #f1f5f9;
+}
+
+.highlight-pill {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
