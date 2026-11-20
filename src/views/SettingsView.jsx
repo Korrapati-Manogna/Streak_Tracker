@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { addDays, formatDateDisplay } from '../streak.js';
 import { exportDataJSON, importDataJSON } from '../storage.js';
+import InstallAppButton from '../components/InstallAppButton.jsx';
+import { IconSpark, IconCheck } from '../components/InstallIcons.jsx';
 
 export default function SettingsView({
   settings,
@@ -8,7 +10,8 @@ export default function SettingsView({
   onLoadDemo,
   onClearAll,
   realToday,
-  onShowToast
+  onShowToast,
+  pwaInstallProps
 }) {
   const [showConfirmClear, setShowConfirmClear] = useState(false);
   const [importText, setImportText] = useState('');
@@ -231,6 +234,54 @@ export default function SettingsView({
                 defaultValue={settings.targetRole}
                 placeholder="e.g. SDE II @ FAANG / Backend Engineer"
                 onBlur={(e) => handleProfileSave(settings.userName, e.target.value)}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Web App & Mobile Installation */}
+        <section className="settings-section-card" aria-label="Web App & Mobile Installation">
+          <div className="section-header">
+            <div>
+              <h3 className="section-title">Web App & Mobile Installation</h3>
+              <p className="section-subtitle">
+                Download and install Streak Tracker directly to your device home screen for instant offline practice.
+              </p>
+            </div>
+            {pwaInstallProps?.isInstalled ? (
+              <span className="installed-pill">
+                <IconCheck size={14} /> Installed
+              </span>
+            ) : (
+              <span className="pwa-badge">Desktop & Mobile PWA</span>
+            )}
+          </div>
+
+          <div className="pwa-settings-status-box">
+            <div className="status-box-header">
+              <div className="status-box-icon">
+                <IconSpark size={18} className="pwa-spark-svg" />
+              </div>
+              <div>
+                <strong>
+                  {pwaInstallProps?.isInstalled
+                    ? 'Streak Tracker is Installed'
+                    : 'Web Application Ready for Install'}
+                </strong>
+                <p className="status-box-subtext">
+                  {pwaInstallProps?.isInstalled
+                    ? 'Running in standalone progressive web app mode with cached offline capabilities.'
+                    : 'Install to Android, iPhone, iPad or Desktop without downloading from any app store.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="pwa-settings-actions">
+              <InstallAppButton
+                isInstalled={pwaInstallProps?.isInstalled}
+                isInstalling={pwaInstallProps?.isInstalling}
+                onInstall={pwaInstallProps?.onInstall}
+                variant="card"
               />
             </div>
           </div>

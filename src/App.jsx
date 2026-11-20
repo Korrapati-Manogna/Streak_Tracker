@@ -21,6 +21,9 @@ import AuthView from './components/AuthView.jsx';
 import Navigation from './components/Navigation.jsx';
 import FastLogModal from './components/FastLogModal.jsx';
 import Toast from './components/Toast.jsx';
+import InstallModal from './components/InstallModal.jsx';
+import MobileInstallBanner from './components/MobileInstallBanner.jsx';
+import { usePWAInstall } from './hooks/usePWAInstall.js';
 
 import DashboardView from './views/DashboardView.jsx';
 import ProblemsView from './views/ProblemsView.jsx';
@@ -38,6 +41,7 @@ export default function App() {
   const [isFastLogOpen, setIsFastLogOpen] = useState(false);
   const [fastLogInitialTitle, setFastLogInitialTitle] = useState('');
   const [toast, setToast] = useState(null);
+  const pwa = usePWAInstall();
 
   const handleOpenFastLog = useCallback((prefillTitle = '') => {
     setFastLogInitialTitle(typeof prefillTitle === 'string' ? prefillTitle : '');
@@ -200,6 +204,9 @@ export default function App() {
         streakCount={streakData.currentStreak}
         isOverridden={isOverridden}
         effectiveToday={effectiveToday}
+        isInstalled={pwa.isInstalled}
+        isInstalling={pwa.isInstalling}
+        onInstall={pwa.triggerInstall}
       />
 
       {/* Main View Router */}
@@ -215,6 +222,14 @@ export default function App() {
             onToggleCompleted={handleToggleCompleted}
             onDeleteEntry={handleDeleteEntry}
             onNavigateToProblems={() => setActiveTab('problems')}
+            pwaInstallProps={{
+              isInstalled: pwa.isInstalled,
+              isInstalling: pwa.isInstalling,
+              onInstall: pwa.triggerInstall,
+              isIOS: pwa.isIOS,
+              isAndroid: pwa.isAndroid,
+              canInstallDirectly: pwa.canInstallDirectly
+            }}
           />
         )}
 
@@ -254,6 +269,14 @@ export default function App() {
             onClearAll={handleClearAll}
             realToday={realToday}
             onShowToast={triggerToast}
+            pwaInstallProps={{
+              isInstalled: pwa.isInstalled,
+              isInstalling: pwa.isInstalling,
+              onInstall: pwa.triggerInstall,
+              isIOS: pwa.isIOS,
+              isAndroid: pwa.isAndroid,
+              canInstallDirectly: pwa.canInstallDirectly
+            }}
           />
         )}
       </main>
@@ -270,6 +293,24 @@ export default function App() {
 
       {/* Responsive Toast Notification */}
       <Toast toast={toast} onClose={() => setToast(null)} />
+
+      {/* Mobile Sticky Install Prompt Bar */}
+      <MobileInstallBanner
+        isInstalled={pwa.isInstalled}
+        isInstalling={pwa.isInstalling}
+        onInstall={pwa.triggerInstall}
+        bannerDismissed={pwa.bannerDismissed}
+        onDismiss={pwa.dismissBanner}
+        isMobile={pwa.isMobile}
+      />
+
+      {/* Minimal Native iOS / Device Installation Guide Modal */}
+      <InstallModal
+        isOpen={pwa.showModal}
+        onClose={pwa.closeModal}
+        isIOS={pwa.isIOS}
+        isAndroid={pwa.isAndroid}
+      />
 
       <footer className="app-footer">
         <p>Streak Tracker · Daily DSA Practice & Algorithmic Discipline · Pure Storage & Streak Engine</p>

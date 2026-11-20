@@ -1,4 +1,5 @@
 import React from 'react';
+import InstallAppButton from './InstallAppButton.jsx';
 
 export default function Navigation({
   activeTab,
@@ -8,7 +9,10 @@ export default function Navigation({
   onOpenFastLog,
   streakCount,
   isOverridden,
-  effectiveToday
+  effectiveToday,
+  isInstalled,
+  isInstalling,
+  onInstall
 }) {
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: '📊' },
@@ -43,6 +47,14 @@ export default function Navigation({
               🛠️ {effectiveToday}
             </span>
           )}
+
+          {/* Download / Install Web App Button */}
+          <InstallAppButton
+            isInstalled={isInstalled}
+            isInstalling={isInstalling}
+            onInstall={onInstall}
+            variant="header"
+          />
 
           <button
             type="button"

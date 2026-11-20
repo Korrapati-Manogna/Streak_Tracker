@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
 );
 
 // Register Progressive Web App Service Worker for offline capability & desktop/mobile installation
-if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+if ('serviceWorker' in navigator && (import.meta.env.PROD || window.location.protocol === 'https:')) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/sw.js')

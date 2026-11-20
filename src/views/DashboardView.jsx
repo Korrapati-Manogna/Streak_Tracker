@@ -16,7 +16,8 @@ export default function DashboardView({
   onOpenFastLog,
   onToggleCompleted,
   onDeleteEntry,
-  onNavigateToProblems
+  onNavigateToProblems,
+  pwaInstallProps
 }) {
   const { currentStreak, todayCount, dailyGoal } = streakData;
 
@@ -29,7 +30,7 @@ export default function DashboardView({
       <StreakHero streakData={streakData} />
 
       {/* 2. Install App directly on the dashboard */}
-      <InstallAppCard />
+      <InstallAppCard {...(pwaInstallProps || {})} />
 
       {/* 3. Recovery Protocol Mode: Gaining the streak by solving 2 problems more */}
       <RecoveryMissionCard
