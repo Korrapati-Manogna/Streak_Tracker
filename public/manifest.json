@@ -1,0 +1,19 @@
+{
+  "name": "Streak Tracker — Daily DSA Practice",
+  "short_name": "StreakTracker",
+  "description": "Track your daily DSA practice, maintain streaks, and recover broken days.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0f17",
+  "theme_color": "#0b0f17",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

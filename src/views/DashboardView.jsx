@@ -1,5 +1,6 @@
 import React from 'react';
 import StreakHero from '../components/StreakHero.jsx';
+import InstallAppCard from '../components/InstallAppCard.jsx';
 import MotivationBanner from '../components/MotivationBanner.jsx';
 import RecoveryMissionCard from '../components/RecoveryMissionCard.jsx';
 import StreakLostCard from '../components/StreakLostCard.jsx';
@@ -27,20 +28,23 @@ export default function DashboardView({
       {/* 1. Focal Visual Element: Streak Hero */}
       <StreakHero streakData={streakData} />
 
-      {/* 2. Recovery Protocol Mode: Gaining the streak by solving 2 problems more */}
+      {/* 2. Install App directly on the dashboard */}
+      <InstallAppCard />
+
+      {/* 3. Recovery Protocol Mode: Gaining the streak by solving 2 problems more */}
       <RecoveryMissionCard
         streakData={streakData}
         onOpenFastLog={onOpenFastLog}
       />
 
-      {/* 3. Motivating if the streak is lost */}
+      {/* 4. Motivating if the streak is lost */}
       <StreakLostCard
         currentStreak={currentStreak}
         entriesCount={entries.length}
         onOpenFastLog={onOpenFastLog}
       />
 
-      {/* 4. Contextual Motivation Message Bank */}
+      {/* 5. Contextual Motivation Message Bank */}
       <MotivationBanner
         streakData={{
           ...streakData,
@@ -49,7 +53,7 @@ export default function DashboardView({
         onShuffleMessage={onShuffleMessage}
       />
 
-      {/* 5. 14-Day Activity Heatmap */}
+      {/* 6. 14-Day Activity Heatmap */}
       <StreakHeatmap last14Days={streakData.last14Days} />
 
       {/* 6. Today's Practice Panel */}
